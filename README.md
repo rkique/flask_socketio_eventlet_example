@@ -10,4 +10,5 @@ This is a working example of a chat application built with `flask`, `flask_socke
 
 ... and it has Websocket support
 
+And when you use `socketio.run(app)` it will automatically use eventlet if its installed instead of the flask development server.
 Okay cool. Now I'm going to extend this to work with golf.
