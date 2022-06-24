@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io.connect('http://localhost:8000')
+
+        socket.on('connect', function() {
+            socket.send('User has connected')
+        });
+
+        socket.on('message', function(msg) {
+            d3.select("#messages").append("li").html(msg)
+        });
+
+        function sendMessage(){
+            socket.send(d3.select("#myMessage").node().value)
+        }
+
+    </script>
+    <ul id="messages"></ul>
+    <input type="text" id="myMessage">
+    <button id="sendbutton" onclick="sendMessage()">Send</button>
+</body>
+</html>
