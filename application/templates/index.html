@@ -23,10 +23,29 @@
         function sendMessage(){
             socket.send(d3.select("#myMessage").node().value)
         }
-
+        function joinRoom1(){
+            username = prompt("enter username: ")
+            socket.emit('join', {'username': username, 'room': 1})
+        }
+        function leaveRoom1(){
+            username = prompt("enter username: ")
+            socket.emit('leave', {'username': username, 'room': 1})
+        }
+        function joinRoom2(){
+            username = prompt("enter username: ")
+            socket.emit('join', {'username': username, 'room': 2})
+        }
+        function leaveRoom2(){
+            username = prompt("enter username: ")
+            socket.emit('leave', {'username': username, 'room': 1})
+        }
     </script>
     <ul id="messages"></ul>
     <input type="text" id="myMessage">
     <button id="sendbutton" onclick="sendMessage()">Send</button>
+    <button id="joinRoom1" onclick="joinRoom1()">Join Room 1</button>
+    <button id="leaveRoom1" onclick="leaveRoom1()">Leave Room 1</button>
+    <button id="joinRoom2" onclick="joinRoom2()">Join Room 2</button>
+    <button id="leaveRoom2" onclick="leaveRoom2()">Leave Room 2</button>
 </body>
 </html>
