@@ -21,22 +21,34 @@
         });
 
         function sendMessage(){
+            //(SO) socket.send is simply an alias for socket.emit('message', message)
             socket.send(d3.select("#myMessage").node().value)
         }
+        function getUsername(){
+            username = sessionStorage.getItem("username")
+            if (username){
+                return username
+            }
+            else {
+                username = prompt("enter username: ")
+                sessionStorage.setItem("username", username)
+                return username
+            }
+        }
         function joinRoom1(){
-            username = prompt("enter username: ")
+            username = getUsername()
             socket.emit('join', {'username': username, 'room': 1})
         }
         function leaveRoom1(){
-            username = prompt("enter username: ")
+            username = getUsername()
             socket.emit('leave', {'username': username, 'room': 1})
         }
         function joinRoom2(){
-            username = prompt("enter username: ")
+            username = getUsername()
             socket.emit('join', {'username': username, 'room': 2})
         }
         function leaveRoom2(){
-            username = prompt("enter username: ")
+            username = getUsername()
             socket.emit('leave', {'username': username, 'room': 1})
         }
     </script>
