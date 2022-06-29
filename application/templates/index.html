@@ -25,13 +25,12 @@
             socket.send(d3.select("#myMessage").node().value)
         }
         function getUsername(){
-            username = sessionStorage.getItem("username")
+            username = d3.select("#username").node().value
             if (username){
                 return username
             }
             else {
-                username = prompt("enter username: ")
-                sessionStorage.setItem("username", username)
+                username = "anonymous"
                 return username
             }
         }
@@ -54,6 +53,7 @@
     </script>
     <ul id="messages"></ul>
     <input type="text" id="myMessage">
+    <input type="text" id="username" placeholder="username">
     <button id="sendbutton" onclick="sendMessage()">Send</button>
     <button id="joinRoom1" onclick="joinRoom1()">Join Room 1</button>
     <button id="leaveRoom1" onclick="leaveRoom1()">Leave Room 1</button>
